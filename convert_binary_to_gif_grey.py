@@ -10,8 +10,8 @@ _path = input()
 
 start_time = time.time()
 
-PERC = 4096 / 255
-DIFF = 1024 / PERC
+SPECTR_UINT = 4096 / 255
+DIFF = 1024 / SPECTR_UINT
 
 list_files = os.listdir(path=_path)
 
@@ -31,7 +31,7 @@ for file in list_sort_files:
     with open(_path + '\\' + str(file), 'rb') as f:
         data_ct = pickle.load(f)
 
-    data_ct = data_ct / PERC
+    data_ct = data_ct / SPECTR_UINT
     data_ct = data_ct + DIFF
     f.close()
     image = Image.fromarray(np.uint8(data_ct), 'L')
