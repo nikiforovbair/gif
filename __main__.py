@@ -36,9 +36,9 @@ def create_images_is_binary_files_ct(_path, list_files, color_module):
 
 
 def main():
-    print("Укажите путь к файлам (например: C:\ct-pickle-dumps\\" + "1\\")
+    print("Укажите путь к папке (например: C:\ct-pickle-dumps\\) **ОСТОРОЖНО РЕКУРСИЯ!**")
     _path = input()
-    print("Укажите цветовой модуль (например: RGB, RGBA, L - grayscale")
+    print("Укажите цветовой модуль (например: RGB, RGBA, L - grayscale)")
     color_module = input()
 
     start_time = time.time()
@@ -52,12 +52,12 @@ def main():
 
         frames = create_images_is_binary_files_ct(dirpath, list_sort_files, color_module)
 
-        frames[0].save(str(dirpath) + "_gif_result.gif", format = 'GIF',
+        frames[0].save(str(os.path.basename(dirpath)) + "_result_" + ("%s_sec" % round((time.time() - start_time), 5)) + ".gif", format = 'GIF',
             append_images = frames[1:],
             save_all = True, Loop = 0)
     
 
-    print("Save files. " + "End time: " +"--- %s seconds ---" % (time.time() - start_time))
+    print("Save files in " + str(os.path.abspath(".")) + " End time: " + "--- %s seconds ---" % (time.time() - start_time))
     input()
 
 if __name__ == "__main__":
